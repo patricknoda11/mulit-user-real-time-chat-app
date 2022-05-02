@@ -15,9 +15,9 @@ const Join = () => {
   return (
     <div className="join">
       <div className="join-inner">
-        <h1 className="heading">Join</h1>
+        <h1 className="heading">Join Room</h1>
         <form onSubmit={onSubmit}>
-          <div className="form-group mt-20">
+          <div className="form-group">
             <label>Name</label>
             <input
               className="form-control"
@@ -27,7 +27,7 @@ const Join = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="form-group mt-20">
+          <div className="form-group">
             <label>Room ID</label>
             <input
               className="form-control"
@@ -37,7 +37,7 @@ const Join = () => {
               onChange={(e) => setRoomId(e.target.value)}
             />
           </div>
-          <button className="btn btn-primary mt-20" type="submit">
+          <button className="btn btn-primary" type="submit">
             Enter
           </button>
         </form>
