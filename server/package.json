@@ -21,6 +21,7 @@
     "devDependencies": {
         "eslint": "^8.14.0",
         "eslint-config-prettier": "^8.5.0",
+        "jsdoc": "^3.6.10",
         "nodemon": "^2.0.16",
         "prettier": "^2.6.2"
     }

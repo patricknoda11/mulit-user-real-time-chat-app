@@ -1,9 +1,12 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-const joinRoute = require('./middleware/routes/join');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
-// const chatRoute = require('./middleware/routes/chat');
+const {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom,
+} = require('./model/users');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5013;
@@ -15,9 +18,6 @@ const io = socketIO(server, {
     },
 });
 
-// register express middleware:
-app.use('/', joinRoute);
-
 // setup io/socket event listeners:
 io.on('connection', (socket) => {
     const SERVER_NAME = 'Chat Bot';
@@ -26,29 +26,23 @@ io.on('connection', (socket) => {
     // setup join event listener:
     socket.on('join', ({ name, roomId }, callback) => {
         // attempt adding specified user to roomId
-
         const { error, user } = addUser({ socketId: socket.id, name, roomId });
-
         // if there is error return error
         if (!user) {
             return callback(error);
         }
-
         // assign socket to room
         socket.join(user.roomId);
-
         // send welcome message to socket
         socket.emit('server-message', {
             user: SERVER_NAME,
             text: `${user.name}, Welcome to room ${user.roomId}`,
         });
-
         // emit join message to all other sockets/clients in the room
         socket.broadcast.to(user.roomId).emit('server-message', {
             user: SERVER_NAME,
             text: `${user.name}, has entered the chat room`,
         });
-
         return callback(user);
     });
 
