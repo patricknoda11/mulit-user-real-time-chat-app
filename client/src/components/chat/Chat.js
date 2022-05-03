@@ -3,6 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import './Chat.css';
 
+import InfoBar from '../infoBar/InfoBar';
+import Input from '../input/Input';
+import Messages from '../messages/Messages';
+
 let socket;
 
 const Chat = () => {
@@ -10,17 +14,15 @@ const Chat = () => {
   const [searchParams] = useSearchParams();
   const [name, setName] = useState('');
   const [roomId, setRoomId] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
+
   [name, roomId];
-
-  const formatText = (text) => {
-    return text.trim();
-  };
-
   useEffect(() => {
     // save search params as state:
     const { name, roomId } = Object.fromEntries([...searchParams]);
-    setName(formatText(name));
-    setRoomId(formatText(roomId));
+    setName(name);
+    setRoomId(roomId);
 
     // initialize socket connection and emit join event:
     socket = io(ENDPOINT);
@@ -32,7 +34,31 @@ const Chat = () => {
     };
   }, [ENDPOINT]);
 
-  return <h1>Chat</h1>;
+  useEffect(() => {
+    socket.on('server-message', (msg) => {
+      setMessages([...messages, msg]);
+    });
+  }, [message]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (!message) {
+      return;
+    }
+    socket.emit('client-message', message, () => {
+      setMessage('');
+    });
+  };
+
+  return (
+    <div className="outer-container">
+      <div className="inner-container">
+        <InfoBar room={roomId} />
+        <Messages messages={messages} name={name} />
+        <Input value={message} setValue={setMessage} onSubmit={sendMessage} />
+      </div>
+    </div>
+  );
 };
 
 export default Chat;

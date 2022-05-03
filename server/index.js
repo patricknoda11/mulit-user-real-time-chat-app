@@ -26,15 +26,16 @@ io.on('connection', (socket) => {
     // setup join event listener:
     socket.on('join', ({ name, roomId }, callback) => {
         // attempt adding specified user to roomId
+
         const { error, user } = addUser({ socketId: socket.id, name, roomId });
 
         // if there is error return error
-        if (error) {
+        if (!user) {
             return callback(error);
         }
 
         // assign socket to room
-        socket.join(roomId);
+        socket.join(user.roomId);
 
         // send welcome message to socket
         socket.emit('server-message', {
@@ -54,8 +55,8 @@ io.on('connection', (socket) => {
     // setup client-message event listener
     socket.on('client-message', (message, callback) => {
         const user = getUser(socket.id);
-        io.to(user.roomId).emit('server-message', {
-            user: SERVER_NAME,
+        io.in(user.roomId).emit('server-message', {
+            user: user.name,
             text: message,
         });
         callback();
@@ -64,8 +65,11 @@ io.on('connection', (socket) => {
     // setup disconnect event handler:
     socket.on('disconnect', () => {
         const user = getUser(socket.id);
+        console.log(user);
         console.log(`${user.name} has disconnected`);
         io.to(user.roomId).emit(`${user.name} has left the chat`);
+        socket.leave(user.roomId);
+        removeUser(user.socketId);
     });
 });
 

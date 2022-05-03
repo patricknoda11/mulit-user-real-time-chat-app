@@ -1,4 +1,4 @@
-.join {
+.join-outer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,19 +13,19 @@
   background-color: #1a1a1d;
 }
 
-.join .heading {
+.join-outer .heading {
   color: white;
   font-size: 2.5em;
   padding-bottom: 10px;
   border-bottom: 2px solid white;
 }
 
-.join .join-inner {
+.join-outer .join-inner {
   width: 20%;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .join {
+  .join-outer {
     height: 100%;
   }
   .join-inner {

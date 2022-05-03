@@ -1,4 +1,4 @@
-.join {
+.join-outer {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -19,7 +19,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .join {
+  .join-outer {
     height: 100%;
   }
 

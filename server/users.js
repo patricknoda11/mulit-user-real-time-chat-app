@@ -20,8 +20,7 @@ const addUser = ({ socketId, name, roomId }) => {
     // add user
     const user = { socketId, name, roomId };
     users.push(user);
-
-    return user;
+    return { user };
 };
 
 /**
@@ -31,7 +30,7 @@ const addUser = ({ socketId, name, roomId }) => {
  */
 const removeUser = (socketId) => {
     const userIndex = users.findIndex((user) => user.socketId === socketId);
-    if (index === -1) {
+    if (userIndex === -1) {
         return { error: `user with id: ${socketId}, does not exist` };
     }
 
@@ -50,6 +49,7 @@ const getUser = (socketId) => {
     if (!user) {
         return { error: `user with id: ${socketId}, does not exist` };
     }
+
     return user;
 };
 

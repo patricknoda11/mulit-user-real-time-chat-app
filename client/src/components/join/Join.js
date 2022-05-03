@@ -13,7 +13,7 @@ const Join = () => {
   };
 
   return (
-    <div className="join">
+    <div className="join-outer">
       <div className="join-inner">
         <h1 className="heading">Join Room</h1>
         <form onSubmit={onSubmit}>
