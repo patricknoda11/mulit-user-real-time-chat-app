@@ -1,50 +1,30 @@
 # Real-time Chat Application
 
-<!-- PROJECT SHIELDS -->
+<!-- ABOUT THE PROJECT -->
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
+## About
+|![same_room](https://user-images.githubusercontent.com/82549471/167042152-96165dc0-7e95-43cb-a167-ac23aac45d00.gif)|
+|:--:|
+|Two users chatting in the same room|
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-  </ol>
-</details>
+### Description
+With the rise of the covid pandemic, loneliness had become a major concern as more and more people are stuck in their homes in isolation. Many communication applications have become the solution to stay socio-emotionally connected with others. This has inspired me to explore technologies which support interactive-communication between multiple users. The chat application I have built provides instant real-time communication between multiple users within the same room. The client-side was developed using ReactJS, and the server was constructed using NodeJS, Express, and Socket.io. The focus of building this application was to gain a better understanding on sockets and the process involved in developing a bidirectional, event-based communication application.
 
 ---
 
-<!-- ABOUT THE PROJECT -->
+<!-- USAGE EXAMPLES -->
 
-## About The Project
+## Usage
 
-### Description
+#### Users chatting in different rooms
+|![diff_rooms](https://user-images.githubusercontent.com/82549471/167042127-d36dfb7b-8771-4976-be6c-ad33f4c175cf.gif)|
+|:--:|
+|Message-events sent from one room is not emitted to other rooms|
 
-This chat application provides instant real-time communication between multiple users within the same room. The client-side was developed using ReactJS, and the server was constructed using NodeJS, Express, and Socket.io.
-
-### Inspirations
-
-With the rise of the covid pandemic, loneliness has become a major concern as more and more people are stuck in their homes in isolation. Many Applications that ... have become of increasing importance to support healthy wellbeing/mental health
-
-### Goal
-
-The focus of building this application was to gain a strong understanding on websockets and developing a low-latency, bidirectional, event-based communication between multiple clients and a server.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+#### Exitting a room
+|![exit](https://user-images.githubusercontent.com/82549471/167042099-b07ee95c-1d53-4663-a763-e9e5077e1940.gif)|
+|:--:|
+|Exit-events triggers notification for all users currently in room|
 
 ---
 
@@ -60,8 +40,6 @@ The focus of building this application was to gain a strong understanding on web
 - [Node.js](https://jquery.com)
 - [Express.js](https://expressjs.com/)
 - [Socket.io](https://socket.io/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 
@@ -102,18 +80,6 @@ The focus of building this application was to gain a strong understanding on web
    cd client
    npm start
    ```
-
-   <p align="right">(<a href="#top">back to top</a>)</p>
-
----
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-<!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 
